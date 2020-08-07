@@ -1,0 +1,24 @@
+{
+  "name": "googlebookssearch",
+  "version": "1.0.0",
+  "description": "MERN app using Google Books API to save list of favorite books",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jameygronewald/googleBooksSearch.git"
+  },
+  "author": "Jamey Gronewald",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jameygronewald/googleBooksSearch/issues"
+  },
+  "homepage": "https://github.com/jameygronewald/googleBooksSearch#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.27"
+  }
+}
