@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../Button/Button";
 
-const Form = ({ setSearch, handleSubmit }) => {
-
-  const handleChange = ({ target: { value } }) => {
-    setSearch(value);
-  };
-
+const Form = ({ handleChange, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -15,7 +10,7 @@ const Form = ({ setSearch, handleSubmit }) => {
         name="search"
         onChange={handleChange}
       />
-      <Button buttonText="Search" />
+      <Button buttonText="Submit" />
     </form>
   );
 };
