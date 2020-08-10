@@ -12,6 +12,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Search} />
+          <Route exact path="/search" component={Search} />
           <Route exact path="/saved" component={Saved} />
         </Switch>
       </Router>

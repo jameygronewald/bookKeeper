@@ -23,7 +23,7 @@ const Search = () => {
           description: bookInfo.description,
           cover: bookInfo.imageLinks.thumbnail,
         });
-        setSearch("");
+        setSearch('');
       })
       .catch(err => {
         console.log(err);
@@ -34,7 +34,7 @@ const Search = () => {
     <div>
       <Form handleChange={handleChange} handleSubmit={handleSubmit} />
       {book.title && <BookInfo book={book} />}
-      {book.title && <Button buttonText="Save book" />}
+      {book.title && <Button saveBook={saveBook} buttonText="Save book" />}
     </div>
   );
 };
