@@ -6,6 +6,7 @@ const Navbar = () => {
         <div className='navRow'>
             <h1>BookKeeper</h1>
             <Link to={'/saved'}>View Saved Books</Link>
+            <Link to={'/search'}>Search for Books</Link>
         </div>
     );
 };

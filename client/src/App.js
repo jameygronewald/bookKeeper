@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div>
+    <>
       <div className='content'>
         <Router>
         <Navbar />
@@ -18,8 +18,10 @@ function App() {
             <Route exact path="/saved" component={Saved} />
           </Switch>
         </Router>
+        <div className='push'></div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 
