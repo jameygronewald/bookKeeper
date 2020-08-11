@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import BookInfo from "../../components/BookInfo/BookInfo";
+import API from "../../utils/API";
 
 const Saved = () => {
-    return (
-        <div>
-            This is where saved books will appear
-        </div>
-    );
+  const [savedBooks, setSavedBooks] = useState([]);
+  useEffect(() => {
+    API.getSavedBooks()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+
+  return (
+    <div>
+      <BookInfo />
+    </div>
+  );
 };
 
 export default Saved;
