@@ -30,9 +30,9 @@ const Search = () => {
       });
   };
 
-  const addNewBook = (event) => {
+  const addNewBook = event => {
     event.preventDefault();
-    console.log('clicked')
+    console.log("clicked");
     API.saveBook(book)
       .then(response => {
         console.log(`Successfully saved ${response}.`);
@@ -44,9 +44,19 @@ const Search = () => {
 
   return (
     <div>
-      <Form handleChange={handleChange} handleSubmit={handleSubmit} />
-      {book.title && <BookInfo book={book} />}
-      {book.title && <Button onClick={addNewBook} buttonText="Save book" />}
+      <div className='formRow'>
+        <div className='formCol'>
+          <Form
+            className="form"
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </div>
+        <div className='col'>
+          {book.title && <BookInfo book={book} />}
+          {book.title && <Button onClick={addNewBook} buttonText="Save book" />}
+        </div>
+      </div>
     </div>
   );
 };
