@@ -5,7 +5,7 @@ import BookInfo from "../../components/BookInfo/BookInfo";
 import Button from "../../components/Button/Button";
 
 const Search = () => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [book, setBook] = useState({});
 
   const handleChange = ({ target: { value } }) => {
@@ -21,9 +21,21 @@ const Search = () => {
           title: bookInfo.title,
           author: bookInfo.authors[0],
           description: bookInfo.description,
-          cover: bookInfo.imageLinks.thumbnail,
+          coverURL: bookInfo.imageLinks.thumbnail,
         });
-        setSearch('');
+        setSearch("");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const addNewBook = (event) => {
+    event.preventDefault();
+    console.log('clicked')
+    API.saveBook(book)
+      .then(response => {
+        console.log(`Successfully saved ${response}.`);
       })
       .catch(err => {
         console.log(err);
@@ -34,7 +46,7 @@ const Search = () => {
     <div>
       <Form handleChange={handleChange} handleSubmit={handleSubmit} />
       {book.title && <BookInfo book={book} />}
-      {book.title && <Button saveBook={saveBook} buttonText="Save book" />}
+      {book.title && <Button onClick={addNewBook} buttonText="Save book" />}
     </div>
   );
 };

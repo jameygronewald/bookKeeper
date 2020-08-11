@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const BookController = require('./controllers/BookController');
 
 const app = express();
 
@@ -16,9 +17,12 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+app.use('/api/book', BookController);
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
+
 
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/bookSearch", {
