@@ -15,7 +15,6 @@ const BookSchema = new Schema({
   },
   description: {
     type: String,
-    trim: true,
     required: 'Description is required.',
   },
   coverURL: {

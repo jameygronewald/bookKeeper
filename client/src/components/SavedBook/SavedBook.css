@@ -1,0 +1,30 @@
+body{
+    background-color: darkolivegreen;
+    color: #f4f4f4;
+}
+
+.bookContainer {
+    padding: 25px 100px 25px 100px;
+    margin-left: 100px;
+    margin-right: 50px;
+    border-bottom: solid black 3px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.bold {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+img {
+    margin-right: 50px;
+}
+
+p {
+    margin-top: 50px;
+}
