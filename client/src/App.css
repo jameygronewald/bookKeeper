@@ -1,12 +1,17 @@
 html, body {
-    height: 100vh;
+    height: 100%;
     margin: 0;
     background-color: darkolivegreen;
     color: #f4f4f4;
 }
 
+#root {
+    height: 100%;
+}
+
 .content {
-    height: 100vh;
+    min-height: 100%;
+    margin-bottom: -50px;
 }
 
 .navRow {
@@ -38,9 +43,13 @@ html, body {
     margin: 20px 0px 0px 45px;
 }
 
-/* .stickyFooter {
+.push {
+    height: 50px;
+}
+
+.stickyFooter {
     font-size: 20px;
     background-color: teal;
     text-align: center;
-    /* height: -50px;
-} */
+    height: 50px;
+}
