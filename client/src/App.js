@@ -10,8 +10,8 @@ function App() {
   return (
     <div>
       <div className='content'>
-        <Navbar />
         <Router>
+        <Navbar />
           <Switch>
             <Route exact path="/" component={Search} />
             <Route exact path="/search" component={Search} />
@@ -19,7 +19,6 @@ function App() {
           </Switch>
         </Router>
       </div>
-      <Footer />
     </div>
   );
 }
