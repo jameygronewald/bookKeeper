@@ -10,11 +10,10 @@ const SavedBook = ({ bookData }) => {
       </div>
       <div className="row">
         <img
-          className="col"
           src={bookData.coverURL}
           alt={`Cover of '${bookData.title}'`}
         />
-        <p className="col">{bookData.description}</p>
+        <p className="column">{bookData.description}</p>
       </div>
     </div>
   );

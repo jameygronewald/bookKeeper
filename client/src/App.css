@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: darkolivegreen;
+    color: #f4f4f4;
+}
+
+.content {
+    height: 100%;
+}
+
+.navRow {
+    padding: 0px 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: teal;
+}
+
+.formRow {
+    display: flex;
+
+}
+
+.formCol {
+    width: 50%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.col {
+    width: 50%;
+    padding-right: 25px;
+}
+
+.formCol button {
+    margin: 20px 0px 0px 45px;
+}
+
+.stickyFooter {
+    font-size: 20px;
+    background-color: teal;
+    text-align: center;
+    height: 40px;
+}
