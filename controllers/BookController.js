@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
-router.get('/'), (req, res) => {
+router.get('/', (req, res) => {
     db.Book.find({})
     .then(bookData => {
         res.status(200).json({
@@ -18,7 +18,7 @@ router.get('/'), (req, res) => {
             message: 'Unable to retrieve saved books.'
         })
     });
-};
+});
 
 router.post('/', (req,res) => {
     db.Book.create(req.body)
