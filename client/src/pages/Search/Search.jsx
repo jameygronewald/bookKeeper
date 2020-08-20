@@ -6,7 +6,7 @@ import Button from "../../components/Button/Button";
 
 const Search = () => {
   const [search, setSearch] = useState("");
-  const [book, setBook] = useState({});
+  const [books, setBooks] = useState([]);
 
   const handleChange = ({ target: { value } }) => {
     setSearch(value);
@@ -16,13 +16,14 @@ const Search = () => {
     event.preventDefault();
     API.getBook(search)
       .then(response => {
-        const bookInfo = response.data.items[0].volumeInfo;
-        setBook({
-          title: bookInfo.title,
-          author: bookInfo.authors[0],
-          description: bookInfo.description,
-          coverURL: bookInfo.imageLinks.thumbnail,
-        });
+        const bookArray = response.data.items;
+        console.log(bookArray);
+        // setBook({
+        //   title: bookInfo.title,
+        //   author: bookInfo.authors[0],
+        //   description: bookInfo.description,
+        //   coverURL: bookInfo.imageLinks.thumbnail,
+        // });
         setSearch("");
       })
       .catch(err => {
@@ -30,17 +31,17 @@ const Search = () => {
       });
   };
 
-  const addNewBook = event => {
-    event.preventDefault();
-    console.log("clicked");
-    API.saveBook(book)
-      .then(response => {
-        console.log(`Successfully saved ${response}.`);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  // const addNewBook = event => {
+  //   event.preventDefault();
+  //   console.log("clicked");
+  //   API.saveBook(book)
+  //     .then(response => {
+  //       console.log(`Successfully saved ${response}.`);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div>
@@ -52,10 +53,10 @@ const Search = () => {
             handleSubmit={handleSubmit}
           />
         </div>
-        <div className='col'>
+        {/* <div className='col'>
           {book.title && <BookInfo book={book} />}
           {book.title && <Button onClick={addNewBook} buttonText="Save book" />}
-        </div>
+        </div> */}
       </div>
     </div>
   );
