@@ -26,16 +26,21 @@ const Search = () => {
       });
   };
 
-  const addNewBook = event => {
-    event.preventDefault();
-    console.log("clicked");
-    // API.saveBook(book)
-    //   .then(response => {
-    //     console.log(`Successfully saved ${response}.`);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+  const addNewBook = book => {
+    const bookObject = {
+      id: book.id,
+      title: book.volumeInfo.title,
+      author: book.volumeInfo.authors[0],
+      description: book.volumeInfo.description,
+      coverURL: book.volumeInfo.imageLinks.thumbnail
+    };
+    API.saveBook(bookObject)
+      .then(response => {
+        console.log(`Successfully saved ${response}.`);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
@@ -48,12 +53,22 @@ const Search = () => {
             handleSubmit={handleSubmit}
           />
         </div>
-        {books.map(book => (
-          <div key={book.id} className="col">
-            {books && <BookInfo book={book.volumeInfo} />}
-            {books && <Button onClick={addNewBook} buttonText="Save book" />}
-          </div>
-        ))}
+        <div className="col">
+          {books.map(book => (
+            <div key={book.id} className="searchResultRow">
+              {books && <BookInfo book={book.volumeInfo} />}
+              {books && (
+                <Button
+                  onClick={e => {
+                    e.preventDefault();
+                    addNewBook(book);
+                  }}
+                  buttonText="Save book"
+                />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
