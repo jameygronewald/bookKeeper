@@ -1,4 +1,4 @@
-const config = (token) => {
+const authConfig = (token) => {
   const config = {
     headers: {
       auth: token,
@@ -7,4 +7,4 @@ const config = (token) => {
   return config;
 };
 
-module.exports = { config };
+module.exports = { authConfig };
