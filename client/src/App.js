@@ -19,7 +19,7 @@ function App() {
   const handleLogin = (userData, token) => {
     localStorage.setItem("sessionToken", token);
     setSessionToken(token);
-    setUserInfo({ userData, isAuthenticated: true });
+    setUserInfo({ ...userData, isAuthenticated: true });
   };
 
   return (
