@@ -1,7 +1,7 @@
-const config = token => {
+const config = (token) => {
   const config = {
     headers: {
-      auth: localStorage.getItem("sessionToken"),
+      auth: token,
     },
   };
   return config;

@@ -6,10 +6,10 @@ const Home = () => {
   return (
     <div>
       <Link to="/signup">
-        <Button />
+        <Button buttonText="SIGN UP" />
       </Link>
       <Link to="/login">
-        <Button />
+        <Button buttonText="LOG IN" />
       </Link>
     </div>
   );

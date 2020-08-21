@@ -17,7 +17,9 @@ const Saved = () => {
 
   return (
     <div>
-    {savedBooks.map((book, index) => <SavedBook key={index + 1}bookData={book}/>)}
+      {savedBooks.map(book => (
+        <SavedBook key={book._id} bookData={book} />
+      ))}
     </div>
   );
 };

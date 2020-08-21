@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Form from "../../components/SearchForm/SearchForm";
+import SearchForm from "../../components/SearchForm/SearchForm";
 import API from "../../utils/API";
 import BookInfo from "../../components/BookInfo/BookInfo";
 import Button from "../../components/Button/Button";
@@ -50,7 +50,7 @@ const Search = () => {
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
       <div className="formRow">
         <div className="formCol">
-          <Form
+          <SearchForm
             className="form"
             handleChange={handleChange}
             handleSubmit={handleSubmit}

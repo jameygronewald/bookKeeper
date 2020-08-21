@@ -1,14 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
+const { generateToken } = require("../client/src/utils/tokenHelper");
 
 router.post("/signup", (req, res) => {
-  console.log(req.body);
   db.User.create(req.body)
     .then(newUserData => {
+      const auth = generateToken(newUserData._id);
+      const newUserObject = {
+        firstName: newUserData.firstName,
+        lastName: newUserData.lastName,
+        books: newUserData.books,
+      };
       res.status(201).json({
         error: false,
-        body: newUserData,
+        body: { newUserObject, auth },
         message: "Successfully created new user.",
       });
     })
@@ -22,14 +28,27 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  console.log(req.body);
-  db.User.findOne({email: req.body.email})
+  const formattedEmail = req.body.email.toLowerCase();
+  db.User.findOne({ email: formattedEmail })
+    .populate("books")
     .then(userData => {
-      res.status(201).json({
-        error: false,
-        body: userData,
-        message: "Successfully created new user.",
-      });
+      if (userData.password === req.body.password) {
+        const auth = generateToken(userData._id);
+        console.log(auth);
+        const userObject = {
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          books: userData.books,
+        };
+        console.log(userObject);
+        res.status(201).json({
+          error: false,
+          body: { userObject, auth },
+          message: "Successfully created new user.",
+        });
+      } else {
+        throw err;
+      }
     })
     .catch(err => {
       res.status(500).json({
