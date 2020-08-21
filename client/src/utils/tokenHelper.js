@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const generateToken = userId => {
   const token = {
-    token: signjwt(userId),
+    sessionToken: signjwt(userId),
   };
   return token;
 };
@@ -12,13 +12,13 @@ const signjwt = userId => {
     {
       data: userId,
     },
-    process.env.JWT_SECRET,
+    'ziggyStardust',
     { expiresIn: "7d" }
   );
 };
 
 const verifyToken = tokenValue => {
-  return jwt.verify(tokenValue, process.env.JWT_SECRET);
+  return jwt.verify(tokenValue, 'ziggyStardust');
 };
 
 module.exports = { generateToken, verifyToken };

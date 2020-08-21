@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import API from "../../utils/API";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../utils/UserContext";
 
-const Signup = () => {
+const Signup = ({ history }) => {
   const [newUser, setNewUser] = useState({
     firstName: "",
     lastName: "",
@@ -13,6 +14,8 @@ const Signup = () => {
     password: "",
     passwordConfirm: "",
   });
+
+  const { handleLogin } = useContext(UserContext);
 
   const notifyInvalidPassword = () =>
     toast.error(
@@ -31,7 +34,12 @@ const Signup = () => {
       return;
     }
     API.signUpUser(newUser)
-      .then(response => console.log(response))
+      .then(response => {
+        console.log(response.data.body);
+        const { newUserObject, auth } = response.data.body; 
+        handleLogin(newUserObject, auth.sessionToken);
+        history.push('/search');
+      })
       .catch(err => console.log(err));
   };
 
