@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
@@ -9,6 +9,8 @@ import Saved from "./pages/Saved/Saved";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserContext } from "./utils/UserContext";
+import API from "../src/utils/API";
+const { authConfig } = require("../src/utils/configHelper");
 
 function App() {
   const [userInfo, setUserInfo] = useState({
@@ -16,11 +18,29 @@ function App() {
   });
   const [sessionToken, setSessionToken] = useState();
 
-  const handleLogin = (userData, token) => {
+  const handleLogin = (user, token) => {
     localStorage.setItem("sessionToken", token);
     setSessionToken(token);
-    setUserInfo({ ...userData, isAuthenticated: true });
+    setUserInfo({ ...user, isAuthenticated: true });
   };
+
+  const retrieveUserInfo = config => {
+    API.getUserLibrary(config)
+      .then(response => {
+        setUserInfo({ ...response.data.body, isAuthenticated: true });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    const sessionToken = localStorage.getItem("sessionToken");
+    if (sessionToken) {
+      setSessionToken(sessionToken);
+      retrieveUserInfo(authConfig(sessionToken));
+    }
+  }, []);
 
   return (
     <>

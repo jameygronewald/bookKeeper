@@ -6,7 +6,7 @@ import Button from "../../components/Button/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../../utils/UserContext";
-const { config } = require('../../utils/configHelper');
+const { authConfig } = require('../../utils/configHelper');
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -40,7 +40,7 @@ const Search = () => {
       description: book.volumeInfo.description,
       coverURL: book.volumeInfo.imageLinks.thumbnail,
     };
-    API.saveBook(bookObject, config(sessionToken))
+    API.saveBook(bookObject, authConfig(sessionToken))
       .then(response => {
         const updatedUserData = response.data.body;
         console.log(updatedUserData);

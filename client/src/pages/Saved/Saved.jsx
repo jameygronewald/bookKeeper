@@ -5,17 +5,6 @@ import { UserContext } from "../../utils/UserContext";
 const Saved = () => {
   const { userInfo } = useContext(UserContext);
   const savedBooks = userInfo.books;
-  // const [savedBooks, setSavedBooks] = useState([]);
-  // useEffect(() => {
-  //   API.getSavedBooks()
-  //     .then(response => {
-  //       setSavedBooks(response.data.data);
-  //       console.log(response.data.data);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   return (
     <div>
