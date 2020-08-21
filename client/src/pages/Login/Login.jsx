@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
+import API from "../../utils/API";
 
-const Login = ({ handleSubmit }) => {
+const Login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = ({ target: { name, value } }) => {
-    setNewUser({ ...login, [name]: value });
+    setCredentials({ ...credentials, [name]: value });
   };
 
   const handleSubmit = event => {
