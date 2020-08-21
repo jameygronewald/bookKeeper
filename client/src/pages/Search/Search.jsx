@@ -3,6 +3,8 @@ import Form from "../../components/Form/Form";
 import API from "../../utils/API";
 import BookInfo from "../../components/BookInfo/BookInfo";
 import Button from "../../components/Button/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -26,17 +28,18 @@ const Search = () => {
       });
   };
 
+  const notifyUserSaveBook = title => toast.info(`Added "${title}" to your library!`);
+
   const addNewBook = book => {
     const bookObject = {
-      id: book.id,
       title: book.volumeInfo.title,
       author: book.volumeInfo.authors[0],
       description: book.volumeInfo.description,
-      coverURL: book.volumeInfo.imageLinks.thumbnail
+      coverURL: book.volumeInfo.imageLinks.thumbnail,
     };
     API.saveBook(bookObject)
       .then(response => {
-        console.log(`Successfully saved ${response}.`);
+        notifyUserSaveBook(response.data.data.title);
       })
       .catch(err => {
         console.log(err);
@@ -45,6 +48,7 @@ const Search = () => {
 
   return (
     <div>
+      <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
       <div className="formRow">
         <div className="formCol">
           <Form
