@@ -18,7 +18,6 @@ const Login = ({ history }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(credentials);
     API.loginUser(credentials)
       .then(response => {
         const { userObject, auth } = response.data.body;

@@ -34,13 +34,11 @@ router.post("/login", (req, res) => {
     .then(userData => {
       if (userData.password === req.body.password) {
         const auth = generateToken(userData._id);
-        console.log(auth);
         const userObject = {
           firstName: userData.firstName,
           lastName: userData.lastName,
           books: userData.books,
         };
-        console.log(userObject);
         res.status(201).json({
           error: false,
           body: { userObject, auth },

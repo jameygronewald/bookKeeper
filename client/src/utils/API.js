@@ -15,8 +15,8 @@ const API = {
   getSavedBooks: function () {
     return axios.get("/api/book");
   },
-  saveBook: function (bookObject) {
-    return axios.post("/api/book", bookObject);
+  saveBook: function (bookObject, config) {
+    return axios.post("/api/book", bookObject, config);
   },
 };
 
