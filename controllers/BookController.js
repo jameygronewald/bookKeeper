@@ -21,8 +21,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req,res) => {
+    console.log(req.body);
     db.Book.create(req.body)
     .then(bookData => {
+        console.log(bookData);
         res.status(200).json({
             error: false,
             data: bookData,

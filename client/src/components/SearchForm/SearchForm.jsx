@@ -1,14 +1,15 @@
 import React from "react";
 import Button from "../Button/Button";
+import Input from "../Input/Input";
 
 const Form = ({ handleChange, handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <Input
         type="text"
         placeholder="Enter a book title"
         name="search"
-        onChange={handleChange}
+        onChangeFunction={handleChange}
       />
       <Button buttonText="Submit" />
     </form>
