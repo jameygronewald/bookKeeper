@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Form from "../../components/Form/Form";
+import Form from "../../components/SearchForm/SearchForm";
 import API from "../../utils/API";
 import BookInfo from "../../components/BookInfo/BookInfo";
 import Button from "../../components/Button/Button";
@@ -16,10 +16,9 @@ const Search = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    API.getBook(search)
+    API.getBooks(search)
       .then(response => {
         const bookArray = response.data.items;
-        console.log(bookArray);
         setBooks(bookArray);
         setSearch("");
       })

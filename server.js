@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const AuthController = require('./controllers/AuthController');
 const BookController = require('./controllers/BookController');
 
 const app = express();
@@ -11,12 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("client/build"));
 
-app.get("/api/config", (req, res) => {
-  res.json({
-    success: true,
-  });
-});
-
+app.use(AuthController);
 app.use('/api/book', BookController);
 
 app.get("*", (req, res) => {

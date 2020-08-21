@@ -1,6 +1,9 @@
 import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home/Home";
+import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
 import Search from "./pages/Search/Search";
 import Saved from "./pages/Saved/Saved";
 import "./App.css";
@@ -13,7 +16,9 @@ function App() {
         <Router>
         <Navbar />
           <Switch>
-            <Route exact path="/" component={Search} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/search" component={Search} />
             <Route exact path="/saved" component={Saved} />
           </Switch>
