@@ -45,7 +45,7 @@ const Search = () => {
         const updatedUserData = response.data.body;
         console.log(updatedUserData);
         setUserInfo({ ...updatedUserData, isAuthenticated: true });
-        notifyUserSaveBook(updatedUserData.books);
+        notifyUserSaveBook(bookObject.title);
       })
       .catch(err => {
         console.log(err);
