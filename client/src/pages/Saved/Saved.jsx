@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import SavedBook from "../../components/SavedBook/SavedBook";
-import API from "../../utils/API";
+import { UserContext } from "../../utils/UserContext";
 
 const Saved = () => {
-  const [savedBooks, setSavedBooks] = useState([]);
-  useEffect(() => {
-    API.getSavedBooks()
-      .then(response => {
-        setSavedBooks(response.data.data);
-        console.log(response.data.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+  const { userInfo } = useContext(UserContext);
+  const savedBooks = userInfo.books;
+  // const [savedBooks, setSavedBooks] = useState([]);
+  // useEffect(() => {
+  //   API.getSavedBooks()
+  //     .then(response => {
+  //       setSavedBooks(response.data.data);
+  //       console.log(response.data.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <div>
-      {savedBooks.map(book => (
+      {userInfo.books && savedBooks.map(book => (
         <SavedBook key={book._id} bookData={book} />
       ))}
     </div>
