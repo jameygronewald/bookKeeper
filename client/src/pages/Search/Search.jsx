@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import API from "../../utils/API";
 import BookInfo from "../../components/BookInfo/BookInfo";
 import Button from "../../components/Button/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../utils/UserContext";
+const { config } = require('../../utils/configHelper');
 
 const Search = () => {
   const [search, setSearch] = useState("");
   const [books, setBooks] = useState([]);
+
+  const { sessionToken, setUserInfo } = useContext(UserContext);
 
   const handleChange = ({ target: { value } }) => {
     setSearch(value);
@@ -36,9 +40,12 @@ const Search = () => {
       description: book.volumeInfo.description,
       coverURL: book.volumeInfo.imageLinks.thumbnail,
     };
-    API.saveBook(bookObject)
+    API.saveBook(bookObject, config(sessionToken))
       .then(response => {
-        notifyUserSaveBook(response.data.data.title);
+        const updatedUserData = response.data.body;
+        console.log(updatedUserData);
+        setUserInfo({ ...updatedUserData, isAuthenticated: true });
+        notifyUserSaveBook(updatedUserData.books);
       })
       .catch(err => {
         console.log(err);

@@ -12,13 +12,13 @@ const signjwt = userId => {
     {
       data: userId,
     },
-    'ziggyStardust',
+    "ziggyStardust",
     { expiresIn: "7d" }
   );
 };
 
 const verifyToken = tokenValue => {
-  return jwt.verify(tokenValue, 'ziggyStardust');
+  return jwt.verify(tokenValue, "ziggyStardust");
 };
 
 module.exports = { generateToken, verifyToken };
