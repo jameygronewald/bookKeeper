@@ -18,6 +18,9 @@ const API = {
   saveBook: function (bookObject, config) {
     return axios.post("/api/book", bookObject, config);
   },
+  deleteBook: function (bookId, config) {
+    return axios.delete("/api/book/" + bookId, config);
+  },
 };
 
 export default API;

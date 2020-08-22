@@ -22,42 +22,95 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const parsedToken = verifyToken(req.headers.auth);
-  const userId = parsedToken.data;
-  db.Book.create(req.body).then(bookData => {
-    db.User.findOne({ _id: userId }).then(userData => {
-      const userBookArray = userData.books;
-      const newBook = bookData._id;
-      userBookArray.push(newBook);
-      const userBooksObject = { books: userBookArray };
-      console.log(userBooksObject);
-      db.User.findOneAndUpdate({ _id: userId }, userBooksObject, {
-        new: true,
-        useFindAndModify: false,
-      })
-        .populate("books")
-        .then(({ books, firstName, lastName }) => {
-          const updatedUser = {
-            books: books,
-            firstName: firstName,
-            lastName: lastName,
-          };
-          console.log(updatedUser);
-          res.status(200).json({
-            error: false,
-            body: updatedUser,
-            message: "Successfully saved book to collection.",
-          });
+  try {
+    const parsedToken = verifyToken(req.headers.auth);
+    const userId = parsedToken.data;
+    db.Book.create(req.body).then(bookData => {
+      db.User.findOne({ _id: userId }).then(userData => {
+        const userBookArray = userData.books;
+        const newBook = bookData._id;
+        userBookArray.push(newBook);
+        const userBooksObject = { books: userBookArray };
+        db.User.findOneAndUpdate({ _id: userId }, userBooksObject, {
+          new: true,
+          useFindAndModify: false,
         })
-        .catch(err => {
-          res.status(500).json({
-            error: true,
-            data: err,
-            message: "Unable to save book to collection.",
+          .populate("books")
+          .then(({ books, firstName, lastName }) => {
+            const updatedUser = {
+              books: books,
+              firstName: firstName,
+              lastName: lastName,
+            };
+            res.status(200).json({
+              error: false,
+              body: updatedUser,
+              message: "Successfully saved book to collection.",
+            });
+          })
+          .catch(err => {
+            res.status(500).json({
+              error: true,
+              data: err,
+              message: "Unable to save book to collection.",
+            });
           });
-        });
+      });
     });
-  });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({
+      error: true,
+      data: null,
+      message: "Invalid jwt",
+    });
+  }
+});
+
+router.delete("/:id", (req, res) => {
+  try {
+    const parsedToken = verifyToken(req.headers.auth);
+    const userId = parsedToken.data;
+    db.Book.findOneAndDelete({ _id: req.params.id }).then(bookData => {
+      db.User.findOne({ _id: userId }).then(userData => {
+        const userBookArray = userData.books;
+        const newBook = bookData._id;
+        const newBookArray = userBookArray.filter(book => JSON.stringify(book._id) !== JSON.stringify(newBook));
+        const userBooksObject = { books: newBookArray };
+        db.User.findOneAndUpdate({ _id: userId }, userBooksObject, {
+          new: true,
+          useFindAndModify: false,
+        })
+          .populate("books")
+          .then(({ books, firstName, lastName }) => {
+            const updatedUser = {
+              books: books,
+              firstName: firstName,
+              lastName: lastName,
+            };
+            res.status(200).json({
+              error: false,
+              body: updatedUser,
+              message: "Successfully deleted book from collection.",
+            });
+          })
+          .catch(err => {
+            res.status(500).json({
+              error: true,
+              body: err,
+              message: "Unable to delete book from collection.",
+            });
+          });
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({
+      error: true,
+      data: null,
+      message: "Invalid jwt",
+    });
+  }
 });
 
 module.exports = router;
