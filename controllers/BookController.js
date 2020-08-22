@@ -67,4 +67,50 @@ router.post("/", (req, res) => {
   }
 });
 
+router.delete("/:id", (req, res) => {
+  try {
+    const parsedToken = verifyToken(req.headers.auth);
+    const userId = parsedToken.data;
+    db.Book.findOneAndDelete({ _id: req.params.id }).then(bookData => {
+      db.User.findOne({ _id: userId }).then(userData => {
+        const userBookArray = userData.books;
+        const newBook = bookData._id;
+        const newBookArray = userBookArray.filter(book => JSON.stringify(book._id) !== JSON.stringify(newBook));
+        const userBooksObject = { books: newBookArray };
+        db.User.findOneAndUpdate({ _id: userId }, userBooksObject, {
+          new: true,
+          useFindAndModify: false,
+        })
+          .populate("books")
+          .then(({ books, firstName, lastName }) => {
+            const updatedUser = {
+              books: books,
+              firstName: firstName,
+              lastName: lastName,
+            };
+            res.status(200).json({
+              error: false,
+              body: updatedUser,
+              message: "Successfully deleted book from collection.",
+            });
+          })
+          .catch(err => {
+            res.status(500).json({
+              error: true,
+              body: err,
+              message: "Unable to delete book from collection.",
+            });
+          });
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({
+      error: true,
+      data: null,
+      message: "Invalid jwt",
+    });
+  }
+});
+
 module.exports = router;
