@@ -43,7 +43,6 @@ const Search = () => {
     API.saveBook(bookObject, authConfig(sessionToken))
       .then(response => {
         const updatedUserData = response.data.body;
-        console.log(updatedUserData);
         setUserInfo({ ...updatedUserData, isAuthenticated: true });
         notifyUserSaveBook(bookObject.title);
       })
