@@ -10,13 +10,8 @@ const Saved = () => {
   const savedBooks = userInfo.books;
 
   const deleteSavedBook = id => {
-    console.log(id);
-    console.log(authConfig(sessionToken));
     API.deleteBook(id, authConfig(sessionToken))
-      .then(response => {
-        console.log(response.data.body);
-        setUserInfo({ ...response.data.body, isAuthenticated: true })
-      })
+      .then(response => setUserInfo({ ...response.data.body, isAuthenticated: true }))
       .catch(err => {
         console.log(err);
       });
