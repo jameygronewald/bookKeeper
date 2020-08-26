@@ -1,8 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    background-color: darkolivegreen;
-    color: #f4f4f4;
+    color: #222;
 }
 
 #root {

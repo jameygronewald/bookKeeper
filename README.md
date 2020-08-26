@@ -18,7 +18,7 @@ MERN app using Google Books API to save a list of favorite books.
 * Once you have repo cloned and dependencies installed, run  ```npm start``` in the command line to start server on localhost:3000.
 
 ## Usage
-1. View the deployed app [here](https://thawing-mountain-67712.herokuapp.com/).
+1. View the deployed app [here](https://bookkeeperlibrary.herokuapp.com/).
 
 ## Images
 
