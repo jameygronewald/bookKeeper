@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div>
+    <div className="homeContainer">
       <Link to="/signup">
-        <Button buttonText="SIGN UP" />
+        <Button className="signupButton" buttonText="SIGN UP" />
       </Link>
       <Link to="/login">
-        <Button buttonText="LOG IN" />
+        <Button className="loginButton" buttonText="LOG IN" />
       </Link>
     </div>
   );

@@ -4,21 +4,58 @@ html, body {
     color: #222;
 }
 
-#root {
-    height: 100%;
-}
-
-.content {
-    min-height: 100%;
-    margin-bottom: -50px;
-}
-
 .navRow {
     padding: 0px 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template: 100% / repeat(8, 1fr);
     background-color: teal;
+    color: #f4f4f4;
+}
+
+.navLinkSearch {
+    grid-column: 4;
+    justify-self: center;
+    align-self: center;
+    text-decoration: none;
+    color: #f4f4f4;
+    font-size: 1.2rem;
+}
+
+.navLinkSaved {
+    grid-column: 5;
+    justify-self: center;
+    align-self: center;
+    text-decoration: none;
+    color: #f4f4f4;
+    font-size: 1.2rem;
+}
+
+.logout {
+    grid-column: 10;
+    justify-self: center;
+    align-self: center;
+    text-decoration: none;
+    color: #f4f4f4;
+    font-size: 1.2rem;
+}
+
+.homeContainer {
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+}
+
+.signupButton {
+    grid-row: 2;
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
+}
+
+.loginButton {
+    grid-row: 3;
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
 }
 
 .formRow {
@@ -43,12 +80,5 @@ html, body {
 }
 
 .push {
-    height: 50px;
-}
-
-.stickyFooter {
-    font-size: 20px;
-    background-color: teal;
-    text-align: center;
     height: 50px;
 }

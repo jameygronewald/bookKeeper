@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
@@ -67,7 +66,6 @@ function App() {
         </Router>
         <div className="push"></div>
       </div>
-      <Footer />
     </>
   );
 }
