@@ -12,7 +12,7 @@ const API = {
   },
   getBooks: function (query) {
     return axios.get(
-      `https://www.googleapis.com/books/v1/volumes?&key=AIzaSyDQcHbPNLRpWvqCjR3cYCQgwCK3Llt09M0&q=${query}`
+      `https://www.googleapis.com/books/v1/volumes?&key=AIzaSyA9o1q4qebN4W8TLojVIDasPqPyW3Dw8G0&q=${query}`
     );
   },
   saveBook: function (bookObject, config) {
