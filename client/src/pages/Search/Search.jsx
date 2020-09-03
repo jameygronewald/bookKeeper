@@ -70,7 +70,6 @@ const Search = () => {
                 {books && <BookInfo book={book.volumeInfo} />}
                 {books && (
                   <Button
-                    className="searchButton"
                     onClick={e => {
                       e.preventDefault();
                       addNewBook(book);
