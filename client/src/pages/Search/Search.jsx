@@ -63,7 +63,7 @@ const Search = () => {
           />
         </div>
         <div className="col">
-          {books.map(book => (
+          {books.length > 0 && books.map(book => (
             <div key={book.id} className="searchResultRow">
               {books && <BookInfo book={book.volumeInfo} />}
               {books && (
