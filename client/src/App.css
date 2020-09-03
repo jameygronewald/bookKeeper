@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     color: #222;
+    font-family: 'Nunito', sans-serif;
 }
 
 .navRow {
@@ -13,7 +14,7 @@ html, body {
 }
 
 .navLinkSearch {
-    grid-column: 4;
+    grid-column: 4 / 6;
     justify-self: center;
     align-self: center;
     text-decoration: none;
@@ -22,7 +23,7 @@ html, body {
 }
 
 .navLinkSaved {
-    grid-column: 5;
+    grid-column: 6;
     justify-self: center;
     align-self: center;
     text-decoration: none;
