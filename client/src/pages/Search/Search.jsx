@@ -6,7 +6,7 @@ import Button from "../../components/Button/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../../utils/UserContext";
-const { authConfig } = require('../../utils/configHelper');
+const { authConfig } = require("../../utils/configHelper");
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -31,7 +31,8 @@ const Search = () => {
       });
   };
 
-  const notifyUserSaveBook = title => toast.info(`Added "${title}" to your library!`);
+  const notifyUserSaveBook = title =>
+    toast.info(`Added "${title}" to your library!`);
 
   const addNewBook = book => {
     const bookObject = {
@@ -63,20 +64,22 @@ const Search = () => {
           />
         </div>
         <div className="col">
-          {books.length > 0 && books.map(book => (
-            <div key={book.id} className="searchResultRow">
-              {books && <BookInfo book={book.volumeInfo} />}
-              {books && (
-                <Button
-                  onClick={e => {
-                    e.preventDefault();
-                    addNewBook(book);
-                  }}
-                  buttonText="Save book"
-                />
-              )}
-            </div>
-          ))}
+          {books.length > 0 &&
+            books.map(book => (
+              <div key={book.id} className="searchResultRow">
+                {books && <BookInfo book={book.volumeInfo} />}
+                {books && (
+                  <Button
+                    className="searchButton"
+                    onClick={e => {
+                      e.preventDefault();
+                      addNewBook(book);
+                    }}
+                    buttonText="Save book"
+                  />
+                )}
+              </div>
+            ))}
         </div>
       </div>
     </div>
