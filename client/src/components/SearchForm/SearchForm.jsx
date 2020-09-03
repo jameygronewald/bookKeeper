@@ -11,7 +11,7 @@ const SearchForm = ({ handleChange, handleSubmit }) => {
         name="search"
         onChangeFunction={handleChange}
       />
-      <Button buttonText="Submit" />
+      <Button buttonText="SUBMIT" />
     </form>
   );
 };
