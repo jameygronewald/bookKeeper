@@ -112,20 +112,27 @@ body {
 }
 
 .signupContainer {
-    display: grid;
-    grid-template: repeat(8, 1fr) / repeat(7, 1fr);
+  display: grid;
+  grid-template: repeat(8, 1fr) / repeat(7, 1fr);
+}
+
+.signupContainer a {
+  grid-row: 8;
+  grid-column: 4;
+  align-self: end;
+  justify-self: center;
 }
 
 .signupForm {
-    grid-row: 2 / 9;
-    grid-column: 4;
-    display: grid;
-    align-items: center;
-    justify-items: center;
+  grid-row: 2 / 8;
+  grid-column: 4;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .signupForm input {
-    margin: 10px auto;
+  margin: 10px auto;
 }
 
 .signupForm button {
@@ -144,20 +151,27 @@ body {
 }
 
 .loginContainer {
-    display: grid;
-    grid-template: repeat(8, 1fr) / repeat(7, 1fr);
+  display: grid;
+  grid-template: repeat(9, 1fr) / repeat(7, 1fr);
+}
+
+.loginContainer a {
+  grid-row: 9;
+  grid-column: 4;
+  align-self: end;
+  justify-self: center;
 }
 
 .loginForm {
-    grid-row: 2 / 9;
-    grid-column: 4;
-    display: grid;
-    align-items: center;
-    justify-items: center;
+  grid-row: 2 / 8;
+  grid-column: 4;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .loginForm input {
-    margin: 10px auto;
+  margin: 10px auto;
 }
 
 .loginForm button {

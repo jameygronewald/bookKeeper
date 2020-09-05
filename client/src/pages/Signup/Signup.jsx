@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
+import BackButton from "../../components/BackButton/BackButton";
 import API from "../../utils/API";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -79,6 +80,7 @@ const Signup = ({ history }) => {
         />
         <Button buttonText="SIGN UP" />
       </form>
+      <BackButton/>
     </div>
   );
 };
