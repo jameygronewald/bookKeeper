@@ -22,27 +22,29 @@ const Login = ({ history }) => {
       .then(response => {
         const { userObject, auth } = response.data.body;
         handleLogin(userObject, auth.sessionToken);
-        history.push('/search')
+        history.push("/search");
       })
       .catch(err => console.log(err));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        placeholder="Email"
-        name="email"
-        onChangeFunction={handleChange}
-      />
-      <Input
-        type="text"
-        placeholder="Password"
-        name="password"
-        onChangeFunction={handleChange}
-      />
-      <Button buttonText="LOG IN" />
-    </form>
+    <div className="loginContainer">
+      <form className="loginForm" onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          placeholder="Email"
+          name="email"
+          onChangeFunction={handleChange}
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          name="password"
+          onChangeFunction={handleChange}
+        />
+        <Button buttonText="LOG IN" />
+      </form>
+    </div>
   );
 };
 

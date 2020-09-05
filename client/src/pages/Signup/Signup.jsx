@@ -44,9 +44,9 @@ const Signup = ({ history }) => {
   };
 
   return (
-    <>
+    <div className="signupContainer">
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
-      <form onSubmit={handleSignup}>
+      <form className="signupForm" onSubmit={handleSignup}>
         <Input
           type="text"
           placeholder="First Name"
@@ -66,20 +66,20 @@ const Signup = ({ history }) => {
           onChangeFunction={handleChange}
         />
         <Input
-          type="text"
+          type="password"
           placeholder="Enter a password"
           name="password"
           onChangeFunction={handleChange}
         />
         <Input
-          type="text"
+          type="password"
           placeholder="Confirm your password"
           name="passwordConfirm"
           onChangeFunction={handleChange}
         />
         <Button buttonText="SIGN UP" />
       </form>
-    </>
+    </div>
   );
 };
 
