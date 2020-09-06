@@ -53,34 +53,28 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <div className="searchContainer">
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
-      <div className="formRow">
-        <div className="formCol">
-          <SearchForm
-            className="form"
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-          />
-        </div>
-        <div className="col">
-          {books.length > 0 &&
-            books.map(book => (
-              <div key={book.id} className="searchResultRow">
-                {books && <BookInfo book={book.volumeInfo} />}
-                {books && (
-                  <Button
-                    onClick={e => {
-                      e.preventDefault();
-                      addNewBook(book);
-                    }}
-                    buttonText="Save book"
-                  />
-                )}
-              </div>
-            ))}
-        </div>
-      </div>
+      <SearchForm
+        className="searchForm"
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+      {books.length > 0 &&
+        books.map(book => (
+          <div key={book.id} className="searchResultRow">
+            {books && <BookInfo book={book.volumeInfo} />}
+            {books && (
+              <Button
+                onClick={e => {
+                  e.preventDefault();
+                  addNewBook(book);
+                }}
+                buttonText="Save book"
+              />
+            )}
+          </div>
+        ))}
     </div>
   );
 };

@@ -1,4 +1,6 @@
 const axios = require("axios");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const API = {
   signUpUser: function (user) {
@@ -12,7 +14,7 @@ const API = {
   },
   getBooks: function (query) {
     return axios.get(
-      `https://www.googleapis.com/books/v1/volumes?&key=${process.env.API_KEY}&q=${query}`
+      `https://www.googleapis.com/books/v1/volumes?&key=AIzaSyA9o1q4qebN4W8TLojVIDasPqPyW3Dw8G0&q=${query}`
     );
   },
   saveBook: function (bookObject, config) {
