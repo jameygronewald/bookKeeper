@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import SavedBook from "../../components/SavedBook/SavedBook";
 import Button from "../../components/Button/Button";
 import API from "../../utils/API";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "../../utils/UserContext";
 const { authConfig } = require("../../utils/configHelper");
 
@@ -9,9 +11,15 @@ const Saved = () => {
   const { userInfo, setUserInfo, sessionToken } = useContext(UserContext);
   const savedBooks = userInfo.books;
 
-  const deleteSavedBook = id => {
+  const notifyUserDeleteBook = title =>
+    toast.info(`Removed "${title}" from your library!`);
+
+  const deleteSavedBook = (id, title) => {
     API.deleteBook(id, authConfig(sessionToken))
-      .then(response => setUserInfo({ ...response.data.body, isAuthenticated: true }))
+      .then(response => {
+        setUserInfo({ ...response.data.body, isAuthenticated: true });
+        notifyUserDeleteBook(title);
+      })
       .catch(err => {
         console.log(err);
       });
@@ -19,6 +27,7 @@ const Saved = () => {
 
   return (
     <div>
+      <ToastContainer position="top-center" autoClose={5000} hideProgressBar />
       {userInfo.books &&
         savedBooks.map(book => (
           <div key={book._id}>
@@ -26,7 +35,7 @@ const Saved = () => {
             <Button
               onClick={e => {
                 e.preventDefault();
-                deleteSavedBook(book._id);
+                deleteSavedBook(book._id, book.title);
               }}
               buttonText="Delete Book"
             />
