@@ -31,14 +31,7 @@ const Saved = () => {
       {userInfo.books &&
         savedBooks.map(book => (
           <div key={book._id}>
-            <SavedBook bookData={book} />
-            <Button
-              onClick={e => {
-                e.preventDefault();
-                deleteSavedBook(book._id, book.title);
-              }}
-              buttonText="Delete Book"
-            />
+            <SavedBook deleteFunction={deleteSavedBook} bookData={book} />
           </div>
         ))}
     </div>
