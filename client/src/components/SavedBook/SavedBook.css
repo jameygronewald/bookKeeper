@@ -5,6 +5,15 @@
     border-bottom: solid black 3px;
 }
 
+.bookContainer div:last-child {
+    display: grid;
+}
+
+.bookContainer div:last-child button {
+    width: 15%;
+    justify-self: end;
+}
+
 .row {
     display: flex;
     flex-direction: row;
