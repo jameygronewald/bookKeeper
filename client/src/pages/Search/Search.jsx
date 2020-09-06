@@ -62,7 +62,7 @@ const Search = () => {
       />
       {books.length > 0 &&
         books.map((book, index) => (
-          <div key={book.id} className={`searchResultRow`}>
+          <div key={index} className={`searchResultRow`}>
             {books && (
               <Button
                 onClick={e => {

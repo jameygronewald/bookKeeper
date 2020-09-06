@@ -7,6 +7,7 @@ import Search from "./pages/Search/Search";
 import Saved from "./pages/Saved/Saved";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ProtectedRoute from "./utils/ProtectedRoute";
 import { UserContext } from "./utils/UserContext";
 import API from "../src/utils/API";
 const { authConfig } = require("../src/utils/configHelper");
@@ -60,8 +61,8 @@ function App() {
               <Route exact path="/home" component={Home} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/search" component={Search} />
-              <Route exact path="/saved" component={Saved} />
+              <ProtectedRoute exact path="/search" componentName={Search} />
+              <ProtectedRoute exact path="/saved" componentName={Saved} />
             </Switch>
           </UserContext.Provider>
         </Router>
