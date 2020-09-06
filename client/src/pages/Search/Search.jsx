@@ -60,10 +60,20 @@ const Search = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
+          {/* <div className={`searchResultRow`}>
+          {books.length > 0 && <> <Button
+                onClick={e => {
+                  e.preventDefault();
+                  addNewBook(books[0]);
+                }}
+                buttonText="Save book"
+              />
+              <BookInfo book={books[0].volumeInfo} />
+               </>} */}
+            
       {books.length > 0 &&
-        books.map(book => (
-          <div key={book.id} className="searchResultRow">
-            {books && <BookInfo book={book.volumeInfo} />}
+        books.map((book, index) => (
+          <div key={book.id} className={`searchResultRow`}>
             {books && (
               <Button
                 onClick={e => {
@@ -73,9 +83,11 @@ const Search = () => {
                 buttonText="Save book"
               />
             )}
+            {books && <BookInfo book={book.volumeInfo} />}
           </div>
         ))}
-    </div>
+        </div>
+    // </div>
   );
 };
 
