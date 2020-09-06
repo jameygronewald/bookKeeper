@@ -151,6 +151,7 @@ body {
     grid-column: 1 / 9;
     display: grid;
     grid-template: 1fr / repeat(4, 1fr);
+    margin-bottom: 4rem;
 }
 
 .searchResultRow div:first-child {
